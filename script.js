@@ -7,190 +7,179 @@ const cancelBtn = document.getElementById("cancelBtn");
 const tableBody = document.getElementById("tableBody");
 
 const nameInput = document.getElementById("name");
-const eventInput = document.getElementById("event");
 const teamInput = document.getElementById("team");
 const beerInput = document.getElementById("beer");
-
-const participantsCount = document.getElementById("participantsCount");
-const eventsCount = document.getElementById("eventsCount");
-const beerCount = document.getElementById("beerCount");
+const eventInput = document.getElementById("event");
 
 let participants =
 JSON.parse(localStorage.getItem("beerChampionship")) || [];
 
-
-
 function saveStorage(){
 
-    localStorage.setItem(
-        "beerChampionship",
-        JSON.stringify(participants)
-    );
+localStorage.setItem(
+
+"beerChampionship",
+
+JSON.stringify(participants)
+
+);
 
 }
-
-
-
-function updateStats(){
-
-    participantsCount.textContent = participants.length;
-
-    const events =
-        [...new Set(participants.map(p => p.event))];
-
-    eventsCount.textContent = events.length;
-
-    const beers =
-        [...new Set(participants.map(p => p.beer))];
-
-    beerCount.textContent = beers.length;
-
-}
-
-
 
 function renderTable(){
 
-    tableBody.innerHTML = "";
+tableBody.innerHTML="";
 
-    participants.forEach((person,index)=>{
+participants.forEach((person,index)=>{
 
-        const row = document.createElement("tr");
+const row=document.createElement("tr");
 
-        row.innerHTML = `
+row.innerHTML=`
 
-        <td>${index+1}</td>
+<td>${index+1}</td>
 
-        <td>${person.name}</td>
+<td>${person.name}</td>
 
-        <td>${person.event}</td>
+<td>${person.team}</td>
 
-        <td>${person.team}</td>
+<td>${person.beer}</td>
 
-        <td>${person.beer}</td>
+<td>${person.event}</td>
 
-        <td>
+<td>
 
-            <button
-            class="deleteBtn"
-            onclick="deleteParticipant(${index})">
+<button
+class="deleteBtn"
+onclick="deleteParticipant(${index})">
 
-                🗑
+⋮
 
-            </button>
+</button>
 
-        </td>
+</td>
 
-        `;
+`;
 
-        tableBody.appendChild(row);
+tableBody.appendChild(row);
 
-    });
-
-    updateStats();
+});
 
 }
 
+window.deleteParticipant=function(index){
 
+if(confirm("Видалити учасника?")){
 
-window.deleteParticipant = function(index){
+participants.splice(index,1);
 
-    if(confirm("Видалити учасника?")){
+saveStorage();
 
-        participants.splice(index,1);
-
-        saveStorage();
-
-        renderTable();
-
-    }
+renderTable();
 
 }
 
+}
 
+addBtn.onclick=function(){
 
-addBtn.onclick = ()=>{
+modal.style.display="flex";
 
-    modal.style.display = "flex";
+nameInput.focus();
 
 }
 
+cancelBtn.onclick=function(){
 
-
-cancelBtn.onclick = ()=>{
-
-    modal.style.display = "none";
-
-    clearInputs();
+closeModal();
 
 }
 
+saveBtn.onclick=function(){
 
+const name=nameInput.value.trim();
 
-saveBtn.onclick = ()=>{
+const team=teamInput.value.trim();
 
-    const name = nameInput.value.trim();
-    const event = eventInput.value.trim();
-    const team = teamInput.value.trim();
-    const beer = beerInput.value.trim();
+const beer=beerInput.value.trim();
 
-    if(
-        name === "" ||
-        event === "" ||
-        team === "" ||
-        beer === ""
-    ){
+const event=eventInput.value.trim();
 
-        alert("Заповніть усі поля.");
+if(
 
-        return;
+name==="" ||
 
-    }
+team==="" ||
 
-    participants.push({
+beer==="" ||
 
-        name:name,
-        event:event,
-        team:team,
-        beer:beer
+event===""
 
-    });
+){
 
-    saveStorage();
+alert("Заповніть усі поля.");
 
-    renderTable();
-
-    clearInputs();
-
-    modal.style.display = "none";
+return;
 
 }
 
+participants.push({
 
+name,
+
+team,
+
+beer,
+
+event
+
+});
+
+saveStorage();
+
+renderTable();
+
+closeModal();
+
+}
+
+function closeModal(){
+
+modal.style.display="none";
+
+clearInputs();
+
+}
 
 function clearInputs(){
 
-    nameInput.value = "";
-    eventInput.value = "";
-    teamInput.value = "";
-    beerInput.value = "";
+nameInput.value="";
+
+teamInput.value="";
+
+beerInput.value="";
+
+eventInput.value="";
 
 }
 
+window.onclick=function(e){
 
+if(e.target===modal){
 
-window.onclick = function(event){
-
-    if(event.target === modal){
-
-        modal.style.display = "none";
-
-        clearInputs();
-
-    }
+closeModal();
 
 }
 
+}
 
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+closeModal();
+
+}
+
+});
 
 renderTable();
