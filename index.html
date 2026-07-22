@@ -1,173 +1,195 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
 
-body{
-background:#f5f7fa;
-padding:40px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.container{
-max-width:1100px;
-margin:auto;
-}
+    <title>Чемпіонат • Хмільна Діжка</title>
 
-h1{
-text-align:center;
-margin-bottom:30px;
-font-size:40px;
-color:#222;
-}
+    <link rel="stylesheet" href="style.css">
 
-#addBtn{
-display:block;
-margin:0 auto 30px auto;
-padding:14px 30px;
-border:none;
-background:#1f7aec;
-color:white;
-font-size:18px;
-border-radius:10px;
-cursor:pointer;
-transition:.2s;
-}
+</head>
 
-#addBtn:hover{
-background:#1766c7;
-}
+<body>
 
-table{
-width:100%;
-border-collapse:collapse;
-background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
+<div class="page">
 
-th{
-background:#222;
-color:white;
-padding:16px;
-font-size:17px;
-}
+    <div class="top-bar">
 
-td{
-padding:15px;
-border-bottom:1px solid #eee;
-text-align:center;
-}
+        <div class="logo">
 
-tr:hover{
-background:#fafafa;
-}
+            <h1>🍺 Чемпіонат «Хмільна Діжка»</h1>
 
-.deleteBtn{
-background:#e74c3c;
-color:white;
-border:none;
-padding:8px 14px;
-border-radius:8px;
-cursor:pointer;
-}
+            <p>Облік ставок покупців</p>
 
-.deleteBtn:hover{
-background:#c0392b;
-}
+        </div>
 
-.modal{
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.45);
-display:none;
-justify-content:center;
-align-items:center;
-}
+        <button id="addBtn">
+            + Додати учасника
+        </button>
 
-.modal-content{
-background:white;
-padding:30px;
-border-radius:15px;
-width:400px;
-display:flex;
-flex-direction:column;
-gap:15px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
+    </div>
 
-.modal-content h2{
-text-align:center;
-margin-bottom:10px;
-}
 
-input,select{
-padding:13px;
-font-size:16px;
-border:1px solid #ddd;
-border-radius:8px;
-outline:none;
-}
 
-input:focus,
-select:focus{
-border-color:#1f7aec;
-}
+    <div class="stats">
 
-.buttons{
-display:flex;
-justify-content:space-between;
-margin-top:10px;
-}
+        <div class="stat-card">
+            <span class="icon">👥</span>
+            <div>
+                <h3 id="participantsCount">0</h3>
+                <p>Учасників</p>
+            </div>
+        </div>
 
-#saveBtn{
-background:#2ecc71;
-border:none;
-color:white;
-padding:12px 24px;
-border-radius:8px;
-cursor:pointer;
-font-size:16px;
-}
+        <div class="stat-card">
+            <span class="icon">🏆</span>
+            <div>
+                <h3 id="eventsCount">0</h3>
+                <p>Подій</p>
+            </div>
+        </div>
 
-#cancelBtn{
-background:#bdc3c7;
-border:none;
-padding:12px 24px;
-border-radius:8px;
-cursor:pointer;
-font-size:16px;
-}
+        <div class="stat-card">
+            <span class="icon">🍺</span>
+            <div>
+                <h3 id="beerCount">0</h3>
+                <p>Видів пива</p>
+            </div>
+        </div>
 
-#saveBtn:hover{
-background:#27ae60;
-}
+    </div>
 
-#cancelBtn:hover{
-background:#95a5a6;
-}
 
-@media(max-width:700px){
 
-body{
-padding:15px;
-}
+    <div class="table-card">
 
-table{
-font-size:13px;
-}
+        <div class="table-title">
 
-h1{
-font-size:30px;
-}
+            <div>
+                🌾 Список учасників
+            </div>
 
-.modal-content{
-width:95%;
-}
+        </div>
 
-}
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>№</th>
+
+                <th>Учасник</th>
+
+                <th>Подія</th>
+
+                <th>На кого поставив</th>
+
+                <th>Яке пиво купив</th>
+
+                <th></th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <h2>🍺 Новий учасник</h2>
+
+        <p class="subtitle">
+            Заповніть інформацію про ставку
+        </p>
+
+
+        <div class="form-group">
+
+            <label>Ім'я</label>
+
+            <input
+            id="name"
+            type="text"
+            placeholder="Введіть ім'я">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Подія</label>
+
+            <input
+            id="event"
+            type="text"
+            placeholder="Наприклад: Ліга Чемпіонів">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>На кого поставив</label>
+
+            <input
+            id="team"
+            type="text"
+            placeholder="Команда або учасник">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Яке пиво купив</label>
+
+            <input
+            id="beer"
+            type="text"
+            placeholder="Наприклад: Hoegaarden">
+
+        </div>
+
+
+
+        <div class="buttons">
+
+            <button id="cancelBtn">
+                Скасувати
+            </button>
+
+            <button id="saveBtn">
+                Зберегти
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
