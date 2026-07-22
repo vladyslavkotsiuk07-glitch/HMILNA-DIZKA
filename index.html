@@ -1,195 +1,161 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Чемпіонат • Хмільна Діжка</title>
+<title>Чемпіонат Пива</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="page">
+<div class="background"></div>
 
-    <div class="top-bar">
+<div class="wrapper">
 
-        <div class="logo">
+<header class="hero">
 
-            <h1>🍺 Чемпіонат «Хмільна Діжка»</h1>
+<button id="addBtn" class="addButton">
+👤 ДОДАТИ УЧАСНИКА
+</button>
 
-            <p>Облік ставок покупців</p>
+<div class="leftDecoration">
 
-        </div>
-
-        <button id="addBtn">
-            + Додати учасника
-        </button>
-
-    </div>
-
-
-
-    <div class="stats">
-
-        <div class="stat-card">
-            <span class="icon">👥</span>
-            <div>
-                <h3 id="participantsCount">0</h3>
-                <p>Учасників</p>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <span class="icon">🏆</span>
-            <div>
-                <h3 id="eventsCount">0</h3>
-                <p>Подій</p>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <span class="icon">🍺</span>
-            <div>
-                <h3 id="beerCount">0</h3>
-                <p>Видів пива</p>
-            </div>
-        </div>
-
-    </div>
-
-
-
-    <div class="table-card">
-
-        <div class="table-title">
-
-            <div>
-                🌾 Список учасників
-            </div>
-
-        </div>
-
-        <table>
-
-            <thead>
-
-            <tr>
-
-                <th>№</th>
-
-                <th>Учасник</th>
-
-                <th>Подія</th>
-
-                <th>На кого поставив</th>
-
-                <th>Яке пиво купив</th>
-
-                <th></th>
-
-            </tr>
-
-            </thead>
-
-            <tbody id="tableBody">
-
-            </tbody>
-
-        </table>
-
-    </div>
+🌾
 
 </div>
 
+<div class="title">
 
+<div class="topBeer">
+
+🍺
+
+</div>
+
+<h1>
+
+ЧЕМПІОНАТ
+<span>ПИВА</span>
+
+</h1>
+
+<div class="subtitle">
+
+СПРОБУЙ • ОЦІНИ • СТАНЬ ЧЕМПІОНОМ
+
+</div>
+
+</div>
+
+<div class="rightDecoration">
+
+🌿
+
+</div>
+
+</header>
+
+
+
+<div class="tableContainer">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="width:70px">№</th>
+
+<th>ІМ'Я</th>
+
+<th>НА КОГО ПОСТАВИВ</th>
+
+<th>НА ЯКЕ ПИВО</th>
+
+<th>НА ЯКУ ПОДІЮ</th>
+
+<th style="width:60px"></th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 
 
 <div class="modal" id="modal">
 
-    <div class="modal-content">
+<div class="modalContent">
 
-        <h2>🍺 Новий учасник</h2>
+<h2>
 
-        <p class="subtitle">
-            Заповніть інформацію про ставку
-        </p>
+Новий учасник
 
+</h2>
 
-        <div class="form-group">
+<input
+type="text"
+id="name"
+placeholder="Ім'я">
 
-            <label>Ім'я</label>
+<input
+type="text"
+id="team"
+placeholder="На кого поставив">
 
-            <input
-            id="name"
-            type="text"
-            placeholder="Введіть ім'я">
+<input
+type="text"
+id="beer"
+placeholder="Яке пиво">
 
-        </div>
+<input
+type="text"
+id="event"
+placeholder="Назва події">
 
+<div class="modalButtons">
 
-        <div class="form-group">
+<button id="cancelBtn">
 
-            <label>Подія</label>
+Скасувати
 
-            <input
-            id="event"
-            type="text"
-            placeholder="Наприклад: Ліга Чемпіонів">
+</button>
 
-        </div>
+<button id="saveBtn">
 
+Зберегти
 
-
-        <div class="form-group">
-
-            <label>На кого поставив</label>
-
-            <input
-            id="team"
-            type="text"
-            placeholder="Команда або учасник">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>Яке пиво купив</label>
-
-            <input
-            id="beer"
-            type="text"
-            placeholder="Наприклад: Hoegaarden">
-
-        </div>
-
-
-
-        <div class="buttons">
-
-            <button id="cancelBtn">
-                Скасувати
-            </button>
-
-            <button id="saveBtn">
-                Зберегти
-            </button>
-
-        </div>
-
-    </div>
+</button>
 
 </div>
 
+</div>
 
+</div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
